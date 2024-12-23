@@ -306,6 +306,9 @@ class TelegraphClient(
     }
 
 
+    /**
+     * GetAccountInfo fetches information about a Telegraph account.
+     */
     fun requireAccessToken(): String {
         return accessToken ?: throw TelegraphException("Access token is required")
     }
