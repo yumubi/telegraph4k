@@ -334,19 +334,19 @@ class TelegraphClient(
         return json.decodeFromJsonElement(result)
     }
 
-    private inline fun <reified T> handleResponse(response: HttpResponse<Buffer>): T {
-        return when (response.statusCode()) {
-            200 -> {
-                val apiResponse = json.decodeFromString<ApiResponse<T>>(response.bodyAsString())
-                if (apiResponse.ok) {
-                    apiResponse.result ?: throw TelegraphException("No result in response")
-                } else {
-                    throw TelegraphException(apiResponse.error ?: "Unknown error")
-                }
-            }
-            else -> throw TelegraphException("HTTP ${response.statusCode()}: ${response.bodyAsString()}")
-        }
-    }
+//    private inline fun <reified T> handleResponse(response: HttpResponse<Buffer>): T {
+//        return when (response.statusCode()) {
+//            200 -> {
+//                val apiResponse = json.decodeFromString<ApiResponse<T>>(response.bodyAsString())
+//                if (apiResponse.ok) {
+//                    apiResponse.result ?: throw TelegraphException("No result in response")
+//                } else {
+//                    throw TelegraphException(apiResponse.error ?: "Unknown error")
+//                }
+//            }
+//            else -> throw TelegraphException("HTTP ${response.statusCode()}: ${response.bodyAsString()}")
+//        }
+//    }
 
     fun close() {
         client.close()
